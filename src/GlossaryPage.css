@@ -1,0 +1,256 @@
+/* Base Styles */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3f37c9;
+    --accent-color: #4cc9f0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --gray-color: #6c757d;
+    --light-gray: #e9ecef;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #f5f7fa;
+  }
+  
+  /* Glossary Page */
+  .glossary-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .glossary-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .glossary-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .glossary-header p {
+    color: var(--gray-color);
+    font-size: 1.1rem;
+  }
+  
+  /* Video Embed Section */
+  .video-embed-section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+  .video-embed-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .video-form {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .video-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  .video-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .video-form button:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Video Modal */
+  .video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--gray-color);
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+  
+  .modal-actions button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .confirm-button {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .confirm-button:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .cancel-button {
+    background-color: var(--light-gray);
+    color: var(--dark-color);
+  }
+  
+  .cancel-button:hover {
+    background-color: #d1d7e0;
+  }
+  
+  /* Glossary Sections */
+  .glossary-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .glossary-section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+  .glossary-section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--light-gray);
+  }
+  
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .term-card {
+    border: 1px solid var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+  }
+  
+  .term-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .term-card h3 {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .term-card p {
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+  }
+  
+  .video-preview {
+    margin-top: 1rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .video-form {
+      flex-direction: column;
+    }
+    
+    .terms-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .modal-actions {
+      flex-direction: column;
+    }
+    
+    .modal-actions button {
+      width: 100%;
+    }
+  }
