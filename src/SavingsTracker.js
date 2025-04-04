@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Bar, Pie } from "react-chartjs-2";
+import { useNavigate } from "react-router-dom";
+import { 
+  Bar, 
+  Pie 
+} from "react-chartjs-2";
 import { 
   Chart as ChartJS, 
   CategoryScale, 
@@ -10,6 +14,20 @@ import {
   Legend,
   ArcElement
 } from "chart.js";
+import { 
+  collection, 
+  doc, 
+  setDoc, 
+  getDoc, 
+  addDoc, 
+  deleteDoc,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+  serverTimestamp
+} from "firebase/firestore";
+import { auth, db } from "./firebase";
 import "./SavingsTracker.css";
 
 // Register Chart.js components
@@ -24,6 +42,10 @@ ChartJS.register(
 );
 
 const SavingsTracker = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
   // State for form inputs
   const [income, setIncome] = useState(0);
   const [incomeSource, setIncomeSource] = useState("");
@@ -49,23 +71,128 @@ const SavingsTracker = () => {
   const [savingsGoal, setSavingsGoal] = useState(0);
   const [timeframe, setTimeframe] = useState("monthly");
   
-  // Load data from localStorage on component mount
+  // Load user data from Firebase on component mount
   useEffect(() => {
-    const savedTransactions = localStorage.getItem("transactions");
-    const savedBudgets = localStorage.getItem("budgets");
-    const savedGoal = localStorage.getItem("savingsGoal");
+    const unsubscribeAuth = auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        loadUserData(currentUser.uid);
+      } else {
+        navigate('/');
+      }
+    });
+
+    return () => unsubscribeAuth();
+  }, [navigate]);
+
+  const loadUserData = async (userId) => {
+    try {
+      // Load user document
+      const userDocRef = doc(db, "users", userId);
+      const userDoc = await getDoc(userDocRef);
+      
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        setBudgets(userData.budgets || budgets);
+        setSavingsGoal(userData.savingsGoal || 0);
+        setTimeframe(userData.timeframe || "monthly");
+      }
+
+      // Load transactions
+      const transactionsRef = collection(db, "users", userId, "transactions");
+      const q = query(transactionsRef);
+      
+      // Set up real-time listener for transactions
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const loadedTransactions = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setTransactions(loadedTransactions);
+      });
+
+      setLoading(false);
+      return unsubscribe;
+    } catch (error) {
+      console.error("Error loading data:", error);
+      setLoading(false);
+    }
+  };
+
+  // Save budgets and savings goal to Firebase
+  const saveUserSettings = async () => {
+    if (!user) return;
     
-    if (savedTransactions) setTransactions(JSON.parse(savedTransactions));
-    if (savedBudgets) setBudgets(JSON.parse(savedBudgets));
-    if (savedGoal) setSavingsGoal(parseFloat(savedGoal));
-  }, []);
-  
-  // Save data to localStorage whenever it changes
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, {
+        budgets,
+        savingsGoal,
+        timeframe,
+        lastUpdated: serverTimestamp()
+      }, { merge: true });
+    } catch (error) {
+      console.error("Error saving settings:", error);
+    }
+  };
+
+  // Add transaction to Firebase
+  const addTransaction = async (type) => {
+    if (!user) return;
+    
+    try {
+      const transactionsRef = collection(db, "users", user.uid, "transactions");
+      
+      if (type === "Income" && income > 0 && incomeSource) {
+        await addDoc(transactionsRef, {
+          type,
+          amount: parseFloat(income),
+          source: incomeSource,
+          date: serverTimestamp(),
+          createdAt: serverTimestamp()
+        });
+        setIncome(0);
+        setIncomeSource("");
+      } else if (type === "Expense" && expense > 0 && expenseCategory) {
+        await addDoc(transactionsRef, {
+          type,
+          amount: parseFloat(expense),
+          category: expenseCategory,
+          note,
+          date: serverTimestamp(),
+          createdAt: serverTimestamp()
+        });
+        setExpense(0);
+        setExpenseCategory("");
+        setNote("");
+      }
+    } catch (error) {
+      console.error("Error adding transaction:", error);
+    }
+  };
+
+  // Delete transaction from Firebase
+  const deleteTransaction = async (id) => {
+    if (!user) return;
+    
+    try {
+      const transactionRef = doc(db, "users", user.uid, "transactions", id);
+      await deleteDoc(transactionRef);
+    } catch (error) {
+      console.error("Error deleting transaction:", error);
+    }
+  };
+
+  // Save settings whenever they change
   useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-    localStorage.setItem("budgets", JSON.stringify(budgets));
-    localStorage.setItem("savingsGoal", savingsGoal.toString());
-  }, [transactions, budgets, savingsGoal]);
+    if (user) {
+      const timer = setTimeout(() => {
+        saveUserSettings();
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [budgets, savingsGoal, timeframe]);
 
   // Calculate totals
   const totalIncome = transactions
@@ -91,40 +218,6 @@ const SavingsTracker = () => {
   // Check if a category is over-budget
   const isOverBudget = (category) => {
     return budgets[category] > 0 && categoryExpenses[category] > budgets[category];
-  };
-
-  // Handle adding transactions
-  const addTransaction = (type) => {
-    if (type === "Income" && income > 0 && incomeSource) {
-      const newTransaction = {
-        type,
-        amount: income,
-        source: incomeSource,
-        date: new Date().toLocaleDateString(),
-        id: Date.now()
-      };
-      setTransactions([newTransaction, ...transactions]);
-      setIncome(0);
-      setIncomeSource("");
-    } else if (type === "Expense" && expense > 0 && expenseCategory) {
-      const newTransaction = {
-        type,
-        amount: expense,
-        category: expenseCategory,
-        note,
-        date: new Date().toLocaleDateString(),
-        id: Date.now()
-      };
-      setTransactions([newTransaction, ...transactions]);
-      setExpense(0);
-      setExpenseCategory("");
-      setNote("");
-    }
-  };
-
-  // Delete a transaction
-  const deleteTransaction = (id) => {
-    setTransactions(transactions.filter(t => t.id !== id));
   };
 
   // Chart data for income vs expenses
@@ -177,7 +270,7 @@ const SavingsTracker = () => {
       tooltip: {
         callbacks: {
           label: function(context) {
-            return `₹{context.dataset.label}: ₹₹{context.raw.toFixed(2)}`;
+            return `${context.dataset.label}: ₹${context.raw.toFixed(2)}`;
           }
         }
       }
@@ -194,11 +287,20 @@ const SavingsTracker = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner"></div>
+        <p>Loading your financial data...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="savings-tracker">
       <header className="app-header">
         <h1>Smart Savings Tracker</h1>
-        <p className="subtitle">Take control of your finances</p>
+        {/*<p className="subtitle">Take control of your finances</p>*/}
       </header>
 
       <div className="dashboard-container">
@@ -229,7 +331,7 @@ const SavingsTracker = () => {
               <div className="progress-container">
                 <div 
                   className="progress-bar"
-                  style={{ width: `₹{Math.min(100, goalProgress)}%` }}
+                  style={{ width: `${Math.min(100, goalProgress)}%` }}
                 ></div>
                 <span className="progress-text">{Math.min(100, goalProgress).toFixed(1)}%</span>
               </div>
@@ -336,7 +438,7 @@ const SavingsTracker = () => {
             {Object.keys(budgets).map(category => (
               <div 
                 key={category} 
-                className={`budget-item ₹{isOverBudget(category) ? "over-budget" : ""}`}
+                className={`budget-item ${isOverBudget(category) ? "over-budget" : ""}`}
               >
                 <label>{category}</label>
                 <div className="budget-input-container">
@@ -428,11 +530,15 @@ const SavingsTracker = () => {
                 {transactions.map(transaction => (
                   <div 
                     key={transaction.id} 
-                    className={`table-row ₹{transaction.type.toLowerCase()}`}
+                    className={`table-row ${transaction.type.toLowerCase()}`}
                   >
-                    <div className="table-cell">{transaction.date}</div>
                     <div className="table-cell">
-                      <span className={`type-badge ₹{transaction.type.toLowerCase()}`}>
+                      {transaction.date?.toDate ? 
+                        transaction.date.toDate().toLocaleDateString() : 
+                        new Date(transaction.date).toLocaleDateString()}
+                    </div>
+                    <div className="table-cell">
+                      <span className={`type-badge ${transaction.type.toLowerCase()}`}>
                         {transaction.type}
                       </span>
                     </div>

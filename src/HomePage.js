@@ -64,10 +64,10 @@ const HomePage = () => {
           </div>
         </div>
         <div className="hero-image">
-          <div className="image-placeholder">
-            {/* In a real app, you would have an actual image here */}
-            <span>📈 Financial Dashboard Preview</span>
-          </div>
+        <img 
+            src="images.jpeg" 
+            className="dashboard-preview"
+          />
         </div>
       </section>
 
@@ -75,7 +75,6 @@ const HomePage = () => {
       <section className="features-section">
         <div className="section-header">
           <h2>Why Choose Our Platform</h2>
-          <p>We combine financial expertise with artificial intelligence to give you an edge</p>
         </div>
         <div className="features-grid">
           {features.map((feature, index) => (

@@ -49,6 +49,7 @@ body {
 
 .subtitle {
   color: var(--gray-color);
+  text-align: right;
   font-size: 1.1rem;
 }
 

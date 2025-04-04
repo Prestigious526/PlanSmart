@@ -9,7 +9,7 @@ import GlossaryPage from './GlossaryPage';
 import LoginPage from './LoginPage';
 import InvestmentComparison from './InvestmentComparison';
 import SignupPage from './SignupPage';
-
+import Dashboard from './Dashboard';
 function App() {
   return (
     <Router>
@@ -23,8 +23,7 @@ function App() {
             <div className="nav-links">
 
 
-              <Link to="/home">Home</Link>
-              <Link to="/SavingsTracker">SavingsTracker</Link>
+              {/*<Link to="/SavingsTracker">Savings Tracker</Link>*/}
               <Link to="/InvestmentCalculator">What-If Calculator</Link>
               <Link to="/investmentcomparison">Investment Comparison</Link>
               <Link to="/QuizPage">Quiz</Link>
@@ -43,7 +42,7 @@ function App() {
                 <div className="hero-section">
                   <div className="hero-content">
                     <h1>Forecast Your Financial Future <span className="highlight">With Confidence</span></h1>
-                    <p className="subtitle">Smart tools to help you grow your wealth and achieve your financial goals</p>
+                    {/*<p className="subtitle">Smart tools to help you grow your wealth and achieve your financial goals</p>*/}
                     <div className="cta-buttons">
                       <Link to="/home" className="cta-primary">Get Started</Link>
                       <Link to="/QuizPage" className="cta-secondary">Take Financial Quiz</Link>
@@ -66,6 +65,7 @@ function App() {
             <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/InvestmentComparison" element={<InvestmentComparison />} />
             <Route path="/signup" element={<SignupPage />} />
+            <Route path="/dashboard" element={<Dashboard  />} />
           </Routes>
         </div>
 
