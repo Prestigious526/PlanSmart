@@ -8,6 +8,7 @@ import InvestmentCalculator from './InvestmentCalculator';
 import GlossaryPage from './GlossaryPage';
 import LoginPage from './LoginPage';
 import InvestmentComparison from './InvestmentComparison';
+import SignupPage from './SignupPage';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                     <div className="cta-buttons">
                       <Link to="/home" className="cta-primary">Get Started</Link>
                       <Link to="/QuizPage" className="cta-secondary">Take Financial Quiz</Link>
+                      
                     </div>
                   </div>
                   <div className="hero-image">
@@ -63,6 +65,7 @@ function App() {
             <Route path="/GlossaryPage" element={<GlossaryPage />} />
             <Route path="/LoginPage" element={<LoginPage />} />
             <Route path="/InvestmentComparison" element={<InvestmentComparison />} />
+            <Route path="/signup" element={<SignupPage />} />
           </Routes>
         </div>
 

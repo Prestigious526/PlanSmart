@@ -325,3 +325,80 @@
       flex-direction: column;
     }
   }
+  /* Add these to your existing LoginPage.css */
+
+/* Spinner for loading state */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Social login buttons */
+.social-login {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-button {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-button:hover {
+  background: #f5f5f5;
+}
+
+.social-button.google {
+  border-color: #4285F4;
+  color: #4285F4;
+}
+
+.social-button.apple {
+  border-color: #000;
+  color: #000;
+}
+
+.social-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Disabled state */
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.forgot-password {
+  background: none;
+  border: none;
+  color: #4285F4;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
