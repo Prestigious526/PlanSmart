@@ -28,6 +28,7 @@ function App() {
               <Link to="/investmentcomparison">Investment Comparison</Link>
               <Link to="/QuizPage">Quiz</Link>
               <Link to="/GlossaryPage">Learn</Link>
+              <Link to="/GlossaryPage">Stock Price</Link>
               <Link to="/LoginPage" className="login-btn">Login</Link>
             </div>
           </div>
@@ -80,8 +81,8 @@ function App() {
               <Link to="/SavingsTracker">Tools</Link>
               <Link to="/GlossaryPage">Resources</Link>
               <Link to="/LoginPage">Account</Link>
-              <Link to="#">Privacy Policy</Link>
-              <Link to="#">Terms of Service</Link>
+              {/* <Link to="#">Privacy Policy</Link>
+              <Link to="#">Terms of Service</Link>*/}
             </div>
             <div className="footer-social">
               {/* Social media icons would go here */}
