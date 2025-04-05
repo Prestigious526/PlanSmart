@@ -10,6 +10,8 @@ import LoginPage from './LoginPage';
 import InvestmentComparison from './InvestmentComparison';
 import SignupPage from './SignupPage';
 import Dashboard from './Dashboard';
+import StockPredictor from './StockPredictor';
+import StockDataFetcher from './StockDataFetcher';
 function App() {
   return (
     <Router>
@@ -28,7 +30,7 @@ function App() {
               <Link to="/investmentcomparison">Investment Comparison</Link>
               <Link to="/QuizPage">Quiz</Link>
               <Link to="/GlossaryPage">Learn</Link>
-              <Link to="/GlossaryPage">Stock Price</Link>
+              <Link to="/StockPredictor">Stock Predictor</Link>
               <Link to="/LoginPage" className="login-btn">Login</Link>
             </div>
           </div>
@@ -67,6 +69,8 @@ function App() {
             <Route path="/InvestmentComparison" element={<InvestmentComparison />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/dashboard" element={<Dashboard  />} />
+            <Route path="/StockPredictor" element={<StockPredictor  />} />
+            <Route path="/StockDataFetcher" element={<StockDataFetcher  />} />
           </Routes>
         </div>
 
