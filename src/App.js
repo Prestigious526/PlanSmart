@@ -14,6 +14,7 @@ import StockPredictor from './StockPredictor';
 import StockDataFetcher from './StockDataFetcher';
 import AppFooter from './Footer';
 import AppHeader from './Header';
+import ForgotPassword from './ForgotPassword';
 function App() {
   return (
     <Router>
@@ -54,7 +55,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/dashboard" element={<Dashboard  />} />
             <Route path="/StockPredictor" element={<StockPredictor  />} />
-            <Route path="/StockDataFetcher" element={<StockDataFetcher  />} />
+            <Route path="/StockDataFetcher" element={<StockDataFetcher  />} /> 
+            <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
         </div>
 

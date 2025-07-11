@@ -17,7 +17,7 @@ const AppHeader = () => {
             <Link to="/investmentcomparison">Investment Comparison</Link>
             <Link to="/QuizPage">Quiz</Link>
             <Link to="/GlossaryPage">Learn</Link>
-            <Button type="primary">Login</Button>
+            <Button type="primary"><Link to="/LoginPage">Login</Link></Button>
           </Space>
         </div>
       </div>
