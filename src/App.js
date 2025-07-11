@@ -12,30 +12,15 @@ import SignupPage from './SignupPage';
 import Dashboard from './Dashboard';
 import StockPredictor from './StockPredictor';
 import StockDataFetcher from './StockDataFetcher';
+import AppFooter from './Footer';
+import AppHeader from './Header';
 function App() {
   return (
     <Router>
       <div className="app">
-        {/* Navigation Bar */}
-        <nav className="navbar">
-          <div className="nav-container">
-            <Link to="/" className="logo">
-              <span className="logo-highlight">Plan</span>Smart
-            </Link>
-            <div className="nav-links">
-
-
-              {/*<Link to="/SavingsTracker">Savings Tracker</Link>*/}
-              <Link to="/InvestmentCalculator">What-If Calculator</Link>
-              <Link to="/investmentcomparison">Investment Comparison</Link>
-              <Link to="/QuizPage">Quiz</Link>
-              <Link to="/GlossaryPage">Learn</Link>
-              <Link to="/StockPredictor">Stock Predictor</Link>
-              <Link to="/LoginPage" className="login-btn">Login</Link>
-            </div>
-          </div>
-        </nav>
-
+        <div className="header">
+          <AppHeader />
+        </div>
         <div className="main-content">
           <Routes>
             {/* Landing Page */}
@@ -58,8 +43,7 @@ function App() {
                 </div>
               }
             />
-            
-            {/* Other Routes */}
+        
             <Route path="/home" element={<HomePage />} />
             <Route path="/SavingsTracker" element={<SavingsTracker />} />
             <Route path="/QuizPage" element={<QuizPage />} />
@@ -74,24 +58,8 @@ function App() {
           </Routes>
         </div>
 
-        {/* Footer */}
         <footer className="footer">
-          <div className="footer-container">
-            <div className="footer-logo">
-              <span className="logo-highlight">Plan</span>Smart
-            </div>
-            <div className="footer-links">
-              <Link to="/home">Home</Link>
-              <Link to="/SavingsTracker">Tools</Link>
-              <Link to="/GlossaryPage">Resources</Link>
-              <Link to="/LoginPage">Account</Link>
-              {/* <Link to="#">Privacy Policy</Link>
-              <Link to="#">Terms of Service</Link>*/}
-            </div>
-            <div className="footer-social">
-              {/* Social media icons would go here */}
-            </div>
-          </div>
+          <AppFooter></AppFooter>
         </footer>
       </div>
     </Router>

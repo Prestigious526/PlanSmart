@@ -27,7 +27,7 @@ ChartJS.register(
 
 const InvestmentCalculator = () => {
   // Form inputs
-  const [initialInvestment, setInitialInvestment] = useState(1000);
+  const [initialInvestment, setInitialInvestment] = useState(10000);
   const [monthlyContribution, setMonthlyContribution] = useState(100);
   const [investmentPeriod, setInvestmentPeriod] = useState(10);
   const [expectedReturn, setExpectedReturn] = useState(7);

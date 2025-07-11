@@ -1,0 +1,67 @@
+.footer {
+  background-color: #1e293b;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.newsletter-input {
+  display: flex;          /*uses flexbox layout which is a method for arranging in row and col */
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;        /* spcae btw input and button */
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-input input {
+  width: 250px;
+  padding: 0.5rem;
+}
+
+.newsletter-input button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.newsletter-input button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+/* Social Icons */
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
+}
+
+.social svg:hover {   /*svg is scalable vector graphics, used for icons */
+  color: white;
+  cursor: pointer;
+}
