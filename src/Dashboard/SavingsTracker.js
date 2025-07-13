@@ -27,7 +27,7 @@ import {
   onSnapshot,
   serverTimestamp
 } from "firebase/firestore";
-import { auth, db } from "./firebase";
+import { auth, db } from "../firebase";
 import "./SavingsTracker.css";
 
 // Register Chart.js components

@@ -2,19 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import HomePage from './HomePage';
-import SavingsTracker from './SavingsTracker';
-import QuizPage from './QuizPage';
-import InvestmentCalculator from './InvestmentCalculator';
-import GlossaryPage from './GlossaryPage';
-import LoginPage from './LoginPage';
-import InvestmentComparison from './InvestmentComparison';
-import SignupPage from './SignupPage';
-import Dashboard from './Dashboard';
-import StockPredictor from './StockPredictor';
-import StockDataFetcher from './StockDataFetcher';
-import AppFooter from './Footer';
-import AppHeader from './Header';
-import ForgotPassword from './ForgotPassword';
+import SavingsTracker from './Dashboard/SavingsTracker';
+import QuizPage from './Quiz/QuizPage';
+import InvestmentCalculator from './What-if Calculator/InvestmentCalculator';
+import GlossaryPage from './Learn/GlossaryPage';
+import LoginPage from './Login/LoginPage';
+import InvestmentComparison from './Comparison/InvestmentComparison';
+import SignupPage from './Login/SignupPage';
+import Dashboard from './Dashboard/Dashboard';
+import StockPredictor from './Stock_Predictor/StockPredictor';
+import StockDataFetcher from './Stock_Predictor/StockDataFetcher';
+import AppFooter from './Header_Footer/Footer';
+import AppHeader from './Header_Footer/Header';
+import ForgotPassword from './Login/ForgotPassword';
 function App() {
   return (
     <Router>

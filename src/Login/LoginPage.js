@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button, Input, Form, Typography, Divider, message } from 'antd';
 import { GoogleOutlined, AppleOutlined } from '@ant-design/icons';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { auth, googleProvider } from './firebase';
+import { auth, googleProvider } from '../firebase';
 import './LoginPage.css';
 
 const { Title, Text } = Typography;

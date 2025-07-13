@@ -1,0 +1,87 @@
+[
+  {
+    "title": "Investment Terms",
+    "terms": [
+      {
+        "term": "Compound Interest",
+        "definition": "Interest calculated on the initial principal and also on the accumulated interest of previous periods.",
+        "videoLink": "https://www.youtube.com/watch?v=wf91rEGw88Q"
+      },
+      {
+        "term": "Diversification",
+        "definition": "The practice of spreading investments among different financial instruments to reduce risk.",
+        "videoLink": "https://www.youtube.com/watch?v=CLO3JQPW1l0"
+      },
+      {
+        "term": "ETF (Exchange-Traded Fund)",
+        "definition": "A type of investment fund that holds multiple assets and trades on stock exchanges.",
+        "videoLink": "https://www.youtube.com/watch?v=7U0d3WyZqMA"
+      },
+      {
+        "term": "ROI (Return on Investment)",
+        "definition": "A performance measure used to evaluate the efficiency of an investment.",
+        "videoLink": "https://www.youtube.com/watch?v=7uXqz6Wgpe8"
+      }
+    ]
+  },
+  {
+    "title": "Personal Finance",
+    "terms": [
+      {
+        "term": "Credit Score",
+        "definition": "A numerical expression representing an individual's creditworthiness.",
+        "videoLink": "https://www.youtube.com/watch?v=58-6xq6lJQ4"
+      },
+      {
+        "term": "Emergency Fund",
+        "definition": "A reserve of money set aside to cover unexpected expenses or financial emergencies.",
+        "videoLink": "https://www.youtube.com/watch?v=4L4YqDy5dZ0"
+      },
+      {
+        "term": "Net Worth",
+        "definition": "The value of all assets minus the total of all liabilities.",
+        "videoLink": "https://www.youtube.com/watch?v=Gg8aY8l_8Sw"
+      }
+    ]
+  },
+  {
+    "title": "Business Acumen",
+    "terms": [
+      {
+        "term": "Cash Flow",
+        "definition": "The net amount of cash moving in and out of a business.",
+        "videoLink": "https://www.youtube.com/watch?v=WX242v5G6oE"
+      },
+      {
+        "term": "EBITDA",
+        "definition": "Earnings Before Interest, Taxes, Depreciation, and Amortization - a measure of company profitability.",
+        "videoLink": "https://www.youtube.com/watch?v=r2g5Yjq3G5I"
+      },
+      {
+        "term": "Market Capitalization",
+        "definition": "The total market value of a company's outstanding shares.",
+        "videoLink": "https://www.youtube.com/watch?v=7aYz4wdU5h0"
+      }
+    ]
+  },
+  {
+    "title": "Cryptocurrency",
+    "terms": [
+      {
+        "term": "Blockchain",
+        "definition": "A decentralized digital ledger that records transactions across many computers.",
+        "videoLink": "https://www.youtube.com/watch?v=yubzJw0uiE4"
+      },
+      {
+        "term": "DeFi (Decentralized Finance)",
+        "definition": "Financial services without central intermediaries, using smart contracts on blockchains.",
+        "videoLink": "https://www.youtube.com/watch?v=17QRFlml4pA"
+      },
+      {
+        "term": "NFT (Non-Fungible Token)",
+        "definition": "A unique digital asset that represents ownership of a specific item or content.",
+        "videoLink": "https://www.youtube.com/watch?v=Oz9zw7-_vhM"
+      }
+    ]
+  }
+]

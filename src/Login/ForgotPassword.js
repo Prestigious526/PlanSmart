@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Typography, message } from 'antd';
 import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from './firebase';
+import { auth } from '../firebase';
 import './ForgotPasswordPage.css';
 
 const { Title, Text } = Typography;
