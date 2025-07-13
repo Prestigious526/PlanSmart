@@ -26,14 +26,14 @@ const GlossaryPage = () => {
   return (
     <div className="glossary-container" style={{ padding: '2rem' }}>
       <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        📘 Financial Glossary
+        Financial Glossary
       </Title>
 
       {loading ? (
         <Spin size="large" />
       ) : (
         glossary.map((section, idx) => (
-          <div key={idx} style={{ marginBottom: '3rem' }}>
+          <div key={idx}>
             <Title level={3} style={{ borderBottom: '2px solid #f0f0f0' }}>
               {section.title}
             </Title>
